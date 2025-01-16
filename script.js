@@ -1,5 +1,4 @@
 const aurora = document.querySelector('.aurora');
-const heart = document.querySelector('.heart');
 const numLights = 100;
 const lights = [];
 
@@ -20,7 +19,6 @@ function formHeart() {
         light.style.setProperty('--x', `${x * 10}px`);
         light.style.setProperty('--y', `${-y * 10}px`);
     });
-    heart.style.opacity = 1;
 }
 
-setTimeout(formHeart, 5000);
+setTimeout(formHeart, 10000);
