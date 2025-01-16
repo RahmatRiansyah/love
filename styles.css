@@ -12,32 +12,35 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(0,0,0,0));
-    animation: aurora 5s infinite;
 }
 
-@keyframes aurora {
+.light {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: move 5s infinite;
+}
+
+@keyframes move {
     0% {
-        transform: scale(0);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1);
-        opacity: 0.5;
+        transform: translate(0, 0);
     }
     100% {
-        transform: scale(0);
-        opacity: 0;
+        transform: translate(var(--x), var(--y));
     }
 }
 
 .heart {
-    position: relative;
+    position: absolute;
     width: 100px;
     height: 100px;
     background: red;
     transform: rotate(-45deg);
     animation: glow 2s infinite;
+    opacity: 0;
+    transition: opacity 2s;
 }
 
 .heart::before,

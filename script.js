@@ -1,9 +1,26 @@
 const aurora = document.querySelector('.aurora');
+const heart = document.querySelector('.heart');
+const numLights = 100;
+const lights = [];
 
-function changeAuroraColor() {
-    const colors = ['rgba(255, 0, 0, 0.1)', 'rgba(0, 255, 0, 0.1)', 'rgba(0, 0, 255, 0.1)', 'rgba(255, 255, 0, 0.1)', 'rgba(0, 255, 255, 0.1)', 'rgba(255, 0, 255, 0.1)'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    aurora.style.background = `radial-gradient(circle, ${randomColor}, rgba(0,0,0,0))`;
+for (let i = 0; i < numLights; i++) {
+    const light = document.createElement('div');
+    light.classList.add('light');
+    light.style.setProperty('--x', `${Math.random() * 2000 - 1000}px`);
+    light.style.setProperty('--y', `${Math.random() * 2000 - 1000}px`);
+    aurora.appendChild(light);
+    lights.push(light);
 }
 
-setInterval(changeAuroraColor, 1000);
+function formHeart() {
+    lights.forEach((light, index) => {
+        const angle = (index / numLights) * Math.PI * 2;
+        const x = 16 * Math.sin(angle) ** 3;
+        const y = 13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle);
+        light.style.setProperty('--x', `${x * 10}px`);
+        light.style.setProperty('--y', `${-y * 10}px`);
+    });
+    heart.style.opacity = 1;
+}
+
+setTimeout(formHeart, 5000);
