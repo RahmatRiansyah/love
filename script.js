@@ -72,4 +72,4 @@ setInterval(function () {
         u.Y *= u.F;
         for (k = 0; k < v - 1;) T = f[k], N = f[++k], N.x -= 0.7 * (N.x - T.x), N.y -= 0.7 * (N.y - T.y), path(N)
     }
-}, 50); // Memperpanjang interval animasi menjadi 50ms untuk memperlambat pencarian
+}, 25); // Mengembalikan interval animasi menjadi 25ms untuk kecepatan semula
