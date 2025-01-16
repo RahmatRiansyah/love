@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: black;
+}
+
+.aurora {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1), rgba(0,0,0,0));
+    animation: aurora 5s infinite;
+}
+
+@keyframes aurora {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.heart {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: red;
+    transform: rotate(-45deg);
+    animation: glow 2s infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    left: 50px;
+    top: 0;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px red;
+    }
+    50% {
+        box-shadow: 0 0 20px red;
+    }
+    100% {
+        box-shadow: 0 0 5px red;
+    }
+}
