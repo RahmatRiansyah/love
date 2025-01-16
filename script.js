@@ -28,26 +28,30 @@ for (i = 0; i < Y; i += 0.8)
 for (i = 0; i < v;) {
     x = R() * WIDTH;
     y = R() * HEIGHT;
-    H = 80 * (i / v) + Math.random * 100;
-    e[i++] = [{
+    H = 240; // Warna biru dalam hue (240 derajat)
+    S = 100; // Saturasi 100%
+    B = 50;  // Kecerahan 50%
+    f = {
         x: x,
         y: y,
         X: 0,
         Y: 0,
-        R: 1,
-        S: 0.5 + R(),
-        q: ~~(R() * h.length),
+        R: 1 - i / v + 1,
+        S: R() + 1,
+        q: ~~(R() * v),
         D: 2 * (i % 2) - 1,
-        F: 0.2 + 0.2 * R()
-    }];
+        F: 0.2 * R() + 0.7,
+        f: "hsla(" + H + "," + S + "%," + B + "%,.5)" // Warna biru
+    };
+    e[i++] = f;
 }
 
 // Fungsi untuk menggambar partikel
 function path(d) {
+    a.fillStyle = d.f;
     a.beginPath();
     a.arc(d.x, d.y, d.R, 0, Y, 1);
     a.closePath();
-    a.fillStyle = "rgba(0, 0, 255, 0.5)"; // Warna biru
     a.fill();
 }
 
@@ -70,6 +74,6 @@ setInterval(function () {
         path(u);
         u.X *= u.F;
         u.Y *= u.F;
-        for (k = 0; k < v - 1;) T = f[k], N = f[++k], N.x -= 0.7 * (N.x - T.x), N.y -= 0.7 * (N.y - T.y), path(N)
+        for (k = 0; k < v - 1;) T = f[k], N = f[++k], N.x -= 0.7 * (N.x - T.x), N.y -= 0.7 * (N.y - T.y), path(N);
     }
 }, 25); // Mengembalikan interval animasi menjadi 25ms untuk kecepatan semula
