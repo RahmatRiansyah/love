@@ -11,6 +11,7 @@ R = Math.random;
 C = Math.cos;
 Y = 6.3;
 
+// Membuat titik-titik pola hati
 for (i = 0; i < Y; i += 0.2) 
   h.push([WIDTH / 2 + 210 * Math.pow(Math.sin(i), 3), 
     HEIGHT / 2 + 13 * -(15 * C(i) - 5 * C(2 * i) - 2 * C(3 * i) - C(4 * i))]);
@@ -23,6 +24,7 @@ for (i = 0; i < Y; i += 0.8)
   h.push([WIDTH / 2 + 90 * Math.pow(Math.sin(i), 3), 
     HEIGHT / 2 + 5 * -(15 * C(i) - 5 * C(2 * i) - 2 * C(3 * i) - C(4 * i))]);
 
+// Membuat partikel cahaya
 for (i = 0; i < v;) {
     x = R() * WIDTH;
     y = R() * HEIGHT;
@@ -40,6 +42,7 @@ for (i = 0; i < v;) {
     }];
 }
 
+// Fungsi untuk menggambar partikel
 function path(d) {
     a.beginPath();
     a.arc(d.x, d.y, d.R, 0, Y, 1);
@@ -48,6 +51,7 @@ function path(d) {
     a.fill();
 }
 
+// Animasi partikel
 setInterval(function () {
     a.fillStyle = "rgba(0,0,0,.2)";
     a.fillRect(0, 0, WIDTH, HEIGHT);
@@ -68,4 +72,4 @@ setInterval(function () {
         u.Y *= u.F;
         for (k = 0; k < v - 1;) T = f[k], N = f[++k], N.x -= 0.7 * (N.x - T.x), N.y -= 0.7 * (N.y - T.y), path(N)
     }
-}, 25);
+}, 50); // Memperpanjang interval animasi menjadi 50ms untuk memperlambat pencarian
